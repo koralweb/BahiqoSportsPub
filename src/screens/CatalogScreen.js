@@ -15,6 +15,7 @@ import SingleProduct from '../components/Catalog/SingleProduct';
 
 const CatalogScreen = ({navigation}) => {
   const [single, setSingle] = useState(null);
+  const [type, setType] = useState('All');
   const renderTypesList = () => {
     const arr = ['All'];
     productsList.forEach(prod => {
@@ -22,17 +23,30 @@ const CatalogScreen = ({navigation}) => {
         arr.push(prod.type);
       }
     });
-    return arr.map(type => (
-      <TouchableOpacity style={styles.typeItem} key={type}>
-        <Text style={styles.type}>{type}</Text>
+    return arr.map(t => (
+      <TouchableOpacity
+        onPress={() => setType(t)}
+        style={styles.typeItem}
+        key={t}>
+        <Text style={styles.type}>{t}</Text>
       </TouchableOpacity>
     ));
   };
 
   const renderProducts = () => {
-    return products.list.map(prod => (
-      <Product setSingle={setSingle} key={prod.title} prod={prod} />
-    ));
+    return products.list
+      .filter(el => {
+        if (type === 'All') {
+          return true;
+        }
+        if (type === el.type) {
+          return true;
+        }
+        return false;
+      })
+      .map(prod => (
+        <Product setSingle={setSingle} key={prod.title} prod={prod} />
+      ));
   };
 
   return (
@@ -50,7 +64,6 @@ const styles = StyleSheet.create({
   typesList: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    
   },
   type: {
     color: 'black',

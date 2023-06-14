@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const Product = ({prod, setSingle}) => {
   return (
@@ -8,19 +9,19 @@ const Product = ({prod, setSingle}) => {
       <View style={styles.desc}>
         <Text style={styles.title}>{prod.title}</Text>
         <Text>{prod.desc}</Text>
-        <View style={{flexDirection: 'row',}}>
+        <View style={{flexDirection: 'row'}}>
           <TouchableOpacity>
-            <Text style={styles.price}>{prod.price}р за порцию</Text>
+            <Text style={styles.price}>{prod.price}грн за порцию</Text>
           </TouchableOpacity>
           {prod.added ? (
             <View style={styles.added}>
-              <Text style={{color: 'white',}}>V</Text>
+              <FontAwesomeIcon icon={'check'} color={'#fff'} />
             </View>
           ) : (
             <TouchableOpacity
               style={styles.plus}
               onPress={() => setSingle(prod)}>
-              <Text style={{color: 'white',}}>+</Text>
+              <Text style={{color: 'white'}}>+</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -31,7 +32,7 @@ const Product = ({prod, setSingle}) => {
 
 const styles = StyleSheet.create({
   cont: {
-    flexDirection: "row",
+    flexDirection: 'row',
     margin: 10,
     width: 250,
   },
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 7,
     fontSize: 17,
-    fontWeight: 40,
   },
   plus: {
     width: 39,
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: 'center',
     marginTop: 7,
-   
   },
   added: {
     width: 39,

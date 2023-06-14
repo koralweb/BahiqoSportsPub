@@ -29,7 +29,7 @@ const SingleProduct = ({single: prod, setSingle}) => {
       <Text style={styles.title}>{prod.title}</Text>
       <Image style={styles.img} source={prod.image} />
       <View style={styles.priceCounter}>
-        <Text style={styles.price}>{prod.price}р за порцию</Text>
+        <Text style={styles.price}>{prod.price}грн за порцию</Text>
         <Counter cnt={cnt} setCnt={setCnt} />
       </View>
       <TouchableOpacity style={styles.btn} onPress={addToCart}>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   btn: {
-    backgroundColor: "#FF3F2F",
+    backgroundColor: '#FF3F2F',
     width: 350,
     height: 50,
     alignItems: 'center',
@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 20,
     fontWeight: 500,
-    color: "white",
+    color: 'white',
     paddingTop: 10,
   },
   desc: {
     fontSize: 15,
-    color: "black",
+    color: 'black',
     margin: 15,
     alignSelf: 'center',
   },

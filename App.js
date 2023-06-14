@@ -9,13 +9,14 @@ import {faShoppingBasket} from '@fortawesome/free-solid-svg-icons';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons/faAngleLeft';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
+import {faCheck} from '@fortawesome/free-solid-svg-icons/faCheck';
 import CatalogScreen from './src/screens/CatalogScreen';
 import AboutScreen from './src/screens/AboutScreen';
 import CartScreen from './src/screens/CartScreen';
 import BookingScreen from './src/screens/BookingScreen';
 import TranslationsScreen from './src/screens/Translations';
 
-library.add(faBars, faShoppingBasket, faAngleLeft, faTrash);
+library.add(faBars, faShoppingBasket, faAngleLeft, faTrash, faCheck);
 
 const Stack = createNativeStackNavigator();
 

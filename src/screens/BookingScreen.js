@@ -1,88 +1,136 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../components/Header';
-import {ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import globalStyles from '../data/globalStyles';
+import products from '../mobx/products';
 
-const BookingScreen = ({navigation}) => {
+const BookingScreen = ({navigation, route}) => {
+  const [fromCart, setFromCart] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  useEffect(() => {
+    if (!showThankYou) {
+      return;
+    }
+    setTimeout(() => {
+      products.clearCart();
+      navigation.push('Home');
+    }, 2000);
+  }, [showThankYou]);
+
+  useEffect(() => {
+    if (route.params) {
+      setFromCart(true);
+    }
+  }, []);
+
   return (
     <View style={styles.globalCont}>
       <Header navigation={navigation} />
-      <ScrollView>
-        <Text style={styles.title}>Бронь столиков</Text>
-
-        <View>
-        <View style={styles.list}>
-          <View style={styles.inner}>
-           <Text style={styles.name}>Имя</Text>
-           <TextInput style={styles.inputName}></TextInput>
-          </View>
-         
-          <View>
-           <Text  style={styles.namb}>№</Text>
-           <TextInput  style={styles.Inputnamb}></TextInput>
-          </View>
-
-        </View>
-        
-        <View style={styles.list}>
-          <View>
-           <Text style={styles.time}>Время</Text>
-           <TextInput style={styles.timeInput}></TextInput>
-          </View>
+      {showThankYou ? (
+        <>
+          <Text style={{...styles.title, textAlign: 'center'}}>
+            Спасибо за оформление заказа
+          </Text>
+          <Text style={{textAlign: 'center'}}>
+            Наши менеджеры свяжутся с вами в ближайшее время
+          </Text>
+        </>
+      ) : (
+        <ScrollView>
+          {fromCart ? (
+            <Text style={styles.title}>Оформить заказ</Text>
+          ) : (
+            <Text style={styles.title}>Бронь столиков</Text>
+          )}
 
           <View>
-           <Text style={styles.data}>Дата</Text>
-           <TextInput style={styles.dataInput}></TextInput>
-          </View>    
-        </View>
+            <View style={styles.list}>
+              <View style={styles.inner}>
+                <Text style={styles.name}>Имя</Text>
+                <TextInput style={styles.input} />
+              </View>
+            </View>
+            <View style={styles.list}>
+              <View style={styles.inner}>
+                <Text style={styles.name}>Телефон</Text>
+                <TextInput style={styles.input} />
+              </View>
+            </View>
 
-        <View>
-          <Text style={styles.comment}>Комменатрий</Text>
-          <TextInput style={styles.commentInput} placeholder='Оставьте свое сообщение'></TextInput>
-        </View>
+            <View style={styles.list}>
+              <View style={{width: '50%'}}>
+                <Text style={styles.time}>Время</Text>
+                <TextInput style={styles.input} />
+              </View>
 
+              <View style={{width: '50%'}}>
+                <Text style={styles.data}>Дата</Text>
+                <TextInput style={styles.input} />
+              </View>
+            </View>
 
-        </View>
-        
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>Далее</Text>
-        </TouchableOpacity>
-      </ScrollView>
+            <View>
+              <Text style={styles.comment}>Комменатрий</Text>
+              <TextInput
+                style={styles.commentInput}
+                placeholder="Оставьте свое сообщение"
+              />
+            </View>
+          </View>
+
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => setShowThankYou(true)}>
+            <Text style={styles.btnText}>Далее</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   ...globalStyles,
-
   title: {
     fontSize: 30,
     fontWeight: 500,
-    color: "black",
+    color: 'black',
     margin: 15,
   },
   list: {
-    flexDirection: "row",
-    margin: 15,
+    flexDirection: 'row',
+    marginVertical: 10,
+    marginHorizontal: 10,
   },
   name: {
     marginBottom: 10,
     fontSize: 15,
     fontWeight: 500,
-    color: "black",
+    color: 'black',
   },
-  inputName: {
+  input: {
     borderWidth: 1,
-    width: 250,
     borderRadius: 4,
     borderColor: 'silver',
+    height: 30,
+    flexGrow: 1,
+    paddingLeft: 10,
   },
   namb: {
     marginLeft: 27,
     marginBottom: 10,
     fontSize: 15,
     fontWeight: 500,
-    color: "black",
+    color: 'black',
   },
   Inputnamb: {
     borderWidth: 1,
@@ -95,7 +143,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 15,
     fontWeight: 500,
-    color: "black",
+    color: 'black',
   },
   timeInput: {
     borderWidth: 1,
@@ -108,7 +156,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 15,
     fontWeight: 500,
-    color: "black",
+    color: 'black',
   },
   dataInput: {
     borderWidth: 1,
@@ -122,18 +170,19 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 15,
     fontWeight: 500,
-    color: "black",
+    color: 'black',
   },
   commentInput: {
     borderWidth: 1,
-    width: 350,
-    height: 100,
+    width: Dimensions.get('window').width - 20,
+    height: 50,
     borderRadius: 4,
     borderColor: 'silver',
-    marginLeft: 15,
+    marginLeft: 10,
+    paddingLeft: 10,
   },
   btn: {
-    backgroundColor: "#FF3F2F",
+    backgroundColor: '#FF3F2F',
     width: 350,
     height: 50,
     alignItems: 'center',
@@ -144,10 +193,12 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 20,
     fontWeight: 500,
-    color: "white",
+    color: 'white',
     paddingTop: 10,
   },
-
+  inner: {
+    width: '100%',
+  },
 });
 
 export default BookingScreen;
