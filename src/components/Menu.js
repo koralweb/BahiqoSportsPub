@@ -20,7 +20,7 @@ const Menu = ({navigation}) => {
   const renderMenuItems = () => {
     return menuList.map(el => (
       <TouchableOpacity onPress={() => navigation.push(el.name)} key={el.name}>
-        <Text>{el.title}</Text>
+        <Text style={styles.menu}>{el.title}</Text>
       </TouchableOpacity>
     ));
   };
@@ -28,7 +28,8 @@ const Menu = ({navigation}) => {
   return menuList.map(el => (
     <View style={styles.cont}>
       {renderMenuItems()}
-      <Image source={require('../assets/logo.png')} />
+      <View style={styles.solid}></View>
+      <Image  style={styles.img} source={require('../assets/logo.png')} />
     </View>
   ));
 };
@@ -42,6 +43,22 @@ const styles = StyleSheet.create({
     width: '100%',
     height: Dimensions.get('window').height - 110,
     zIndex: 100,
+    paddingTop: 90,
+    alignItems: 'center',
+  },
+  menu: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 500,
+  },
+  img: {
+    marginTop: 130,
+  },
+  solid: {
+    width: '90%',
+    height: 4,
+    backgroundColor: '#FF3F2F',
+    marginTop: 15,
   },
 });
 

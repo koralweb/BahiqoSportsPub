@@ -10,14 +10,14 @@ const Product = ({prod}) => {
   return (
     <View style={styles.cont}>
       <View style={styles.titleDesc}>
-        <Text>{prod.title}</Text>
-        <Text>{prod.desc}</Text>
-        <TouchableOpacity onPress={() => products.removeProduct(prod.id)}>
+        <Text style={styles.title}>{prod.title}</Text>
+        <Text style={styles.prodDesc}>{prod.desc}</Text>
+        <TouchableOpacity style={styles.delite} onPress={() => products.removeProduct(prod.id)}>
           <FontAwesomeIcon icon={'trash'} />
         </TouchableOpacity>
       </View>
-      <View>
-        <Text>{prod.price}руб</Text>
+      <View style={styles.wrp}>
+        <Text style={styles.price}>{prod.price}руб</Text>
         <Counter cnt={cnt} setCnt={setCnt} />
       </View>
     </View>
@@ -26,14 +26,41 @@ const Product = ({prod}) => {
 
 const styles = StyleSheet.create({
   cont: {
-    borderWidth: 1,
+    borderRadius: 4,
     marginBottom: 10,
     marginHorizontal: 10,
-    backgroundColor: 'silver',
+    backgroundColor: '#E5E5E5',
     flexDirection: 'row',
+    justifyContent: "space-between", 
   },
   titleDesc: {
     width: '70%',
+    paddingLeft: 10, 
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 500,
+    color: "black",
+    paddingTop: 10,
+  },
+  prodDesc: {
+    fontSize: 15,
+    fontWeight: 400,
+    color: "black",
+    paddingTop: 10,
+
+  },
+  price: {
+    fontSize: 20,
+    fontWeight: 500,
+    color: "black",
+    paddingTop: 10,
+  },
+  delite: {
+    margin: 10,
+  },
+  wrp: {
+   justifyContent: "space-around",
   },
 });
 

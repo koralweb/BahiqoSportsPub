@@ -3,6 +3,8 @@ const globalStyles = {
     flex: 1,
     backgroundColor: '#fff',
     position: 'relative',
+    
+   
   },
 };
 

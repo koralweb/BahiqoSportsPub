@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import globalStyles from '../data/globalStyles';
 import products from '../mobx/products';
@@ -21,11 +22,12 @@ const CartScreen = ({navigation}) => {
 
   const renderEmptyCart = () => {
     return (
-      <View>
-        <Text>Ваша корзина пуста</Text>
-        <TouchableOpacity onPress={() => navigation.push('Catalog')}>
-          <Text>Перейти в каталог</Text>
+      <View style={styles.cart}>
+        <Text style={styles.cartText}>Ваша корзина пуста</Text>
+        <TouchableOpacity onPress={() => navigation.push('Catalog')} style={styles.cartBtn}>
+          <Text style={styles.cartCatalog}>Перейти в каталог</Text>
         </TouchableOpacity>
+        <Image  style={styles.img} source={require('../assets/logo.png')} />
       </View>
     );
   };
@@ -33,23 +35,75 @@ const CartScreen = ({navigation}) => {
   return (
     <View style={styles.globalCont}>
       <Header navigation={navigation} />
-      <Text>Корзина</Text>
+      <Text style={styles.title}>Корзина</Text>
       {products.list.some(el => el.added) ? (
         <ScrollView>
           {renderProducts()}
-          <TouchableOpacity>
-            <Text>Оформить заказ</Text>
+          <TouchableOpacity style={styles.btn}>
+            <Text style={styles.btnText}>Оформить заказ</Text>
           </TouchableOpacity>
+          
         </ScrollView>
       ) : (
         renderEmptyCart()
       )}
+      
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   ...globalStyles,
+  title: {
+    fontSize: 30,
+    fontWeight: 500,
+    color: "black",
+    margin: 15,
+  },
+  cart: {
+    alignItems: 'center',
+    marginTop: 35,
+  },
+  cartText: {
+    fontSize: 20,
+    fontWeight: 500,
+    color: "black",
+    margin: 15,
+  },
+  cartBtn: {
+    backgroundColor: "#FF3F2F",
+    width: 350,
+    height: 50,
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 30,
+    borderRadius: 4,
+  },
+  cartCatalog: {
+    fontSize: 20,
+    fontWeight: 500,
+    color: "white",
+    paddingTop: 10,
+  },
+  img: {
+    alignSelf: 'center',
+    marginTop: 250,
+  },
+  btn: {
+    backgroundColor: "#FF3F2F",
+    width: 350,
+    height: 50,
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderRadius: 4,  
+  },
+  btnText: {
+    fontSize: 20,
+    fontWeight: 500,
+    color: "white",
+    paddingTop: 10, 
+  },
+
 });
 
 export default observer(CartScreen);

@@ -24,7 +24,7 @@ const CatalogScreen = ({navigation}) => {
     });
     return arr.map(type => (
       <TouchableOpacity style={styles.typeItem} key={type}>
-        <Text>{type}</Text>
+        <Text style={styles.type}>{type}</Text>
       </TouchableOpacity>
     ));
   };
@@ -50,6 +50,12 @@ const styles = StyleSheet.create({
   typesList: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    
+  },
+  type: {
+    color: 'black',
+    fontWeight: 500,
+    marginBottom: 10,
   },
 });
 

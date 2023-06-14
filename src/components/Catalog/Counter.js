@@ -29,6 +29,32 @@ const Counter = ({cnt, setCnt}) => {
 const styles = StyleSheet.create({
   cont: {
     flexDirection: 'row',
+    paddingRight: 10,
+    marginTop: "auto",
+  },
+  operator: {
+    fontSize: 35,
+    fontWeight: 500,
+    color: "white",
+    backgroundColor: "#FF3F2F",
+    width: 25,
+    height: 45,
+    borderRadius: 4,
+    alignItems: 'center',
+    marginLeft: 5,
+    marginBottom: 10,
+  },
+
+  text: {
+    fontSize: 30,
+    fontWeight: 500,
+    color: "white",
+  },
+  cnt: {
+    fontSize: 25,
+    fontWeight: 500,
+    color: "black",
+    padding: 5,
   },
 });
 

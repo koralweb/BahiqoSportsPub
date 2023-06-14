@@ -3,24 +3,24 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const Product = ({prod, setSingle}) => {
   return (
-    <View>
+    <View style={styles.cont}>
       <Image source={prod.image} style={styles.image} />
-      <View>
-        <Text>{prod.title}</Text>
+      <View style={styles.desc}>
+        <Text style={styles.title}>{prod.title}</Text>
         <Text>{prod.desc}</Text>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row',}}>
           <TouchableOpacity>
-            <Text>{prod.price}р за порцию</Text>
+            <Text style={styles.price}>{prod.price}р за порцию</Text>
           </TouchableOpacity>
           {prod.added ? (
             <View style={styles.added}>
-              <Text>V</Text>
+              <Text style={{color: 'white',}}>V</Text>
             </View>
           ) : (
             <TouchableOpacity
               style={styles.plus}
               onPress={() => setSingle(prod)}>
-              <Text>+</Text>
+              <Text style={{color: 'white',}}>+</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -30,23 +30,59 @@ const Product = ({prod, setSingle}) => {
 };
 
 const styles = StyleSheet.create({
+  cont: {
+    flexDirection: "row",
+    margin: 10,
+    width: 250,
+  },
+  desc: {
+    justifyContent: 'center',
+    paddingLeft: 10,
+  },
   image: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 600,
+    color: 'black',
+  },
+  price: {
+    paddingTop: 7,
+    backgroundColor: '#FF3F2F',
+    color: 'white',
+    borderRadius: 5,
+    width: 180,
+    height: 39,
+    textAlign: 'center',
+    marginRight: 10,
+    marginTop: 7,
+    fontSize: 17,
+    fontWeight: 40,
   },
   plus: {
-    width: 30,
-    height: 30,
+    width: 39,
+    height: 39,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    backgroundColor: '#FF3F2F',
+    color: 'white',
+    borderRadius: 5,
+    textAlign: 'center',
+    marginTop: 7,
+   
   },
   added: {
-    width: 30,
-    height: 30,
+    width: 39,
+    height: 39,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    color: 'white',
+    borderRadius: 5,
+    textAlign: 'center',
+    marginTop: 7,
+    backgroundColor: '#1CCD38',
   },
 });
 
