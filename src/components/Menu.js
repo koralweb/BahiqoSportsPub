@@ -28,8 +28,8 @@ const Menu = ({navigation}) => {
   return menuList.map(el => (
     <View style={styles.cont}>
       {renderMenuItems()}
-      <View style={styles.solid}></View>
-      <Image  style={styles.img} source={require('../assets/logo.png')} />
+      <View style={styles.solid} />
+      <Image style={styles.img} source={require('../assets/logo.png')} />
     </View>
   ));
 };

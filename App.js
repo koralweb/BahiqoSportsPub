@@ -15,6 +15,7 @@ import AboutScreen from './src/screens/AboutScreen';
 import CartScreen from './src/screens/CartScreen';
 import BookingScreen from './src/screens/BookingScreen';
 import TranslationsScreen from './src/screens/Translations';
+import BahqScreen from './src/screens/BahqScreen';
 
 library.add(faBars, faShoppingBasket, faAngleLeft, faTrash, faCheck);
 
@@ -52,6 +53,11 @@ function App() {
         <Stack.Screen
           name="Translations"
           component={TranslationsScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Bahq"
+          component={BahqScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

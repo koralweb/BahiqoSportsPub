@@ -2,21 +2,21 @@ import React from 'react';
 import Header from '../components/Header';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import globalStyles from '../data/globalStyles';
-import matchesList from '../data/matchesList';
+import matches from '../mobx/matches';
 
 let date = new Date().getDate();
 const TranslationsScreen = ({navigation}) => {
   const renderMatchList = () => {
-    return matchesList
-      .filter(el => el.date >= date)
+    return matches.list
+      .filter(el => el.matchDate >= date)
       .map((match, idx) => (
         <View style={styles.list} key={Math.random()}>
           <View style={idx % 2 ? styles.inner : ''}>
-            <Text style={styles.name}>{match.liga}</Text>
-            <Text style={styles.comand}>{match.t1}</Text>
-            <Text style={styles.comand}>{match.t2}</Text>
+            <Text style={styles.name}>{match.ligaOf}</Text>
+            <Text style={styles.comand}>{match.team_1}</Text>
+            <Text style={styles.comand}>{match.team_2}</Text>
             <Text style={styles.dats}>
-              {match.date}.06 - {match.time}
+              {match.matchDate}.06 - {match.matchTime}
             </Text>
           </View>
         </View>
